@@ -80,7 +80,7 @@
        77 cr_fath PIC 9(2).
        77 cr_farch PIC 9(2).
        77 cr_fparti PIC 9(2).
-       77 WIdE PIC 9(2)
+       77 WIdE PIC 9(2).
        77 Wfin PIC 9.
        77 Wchoix2 PIC 9.
        77 Wtrouve PIC 9.
@@ -162,5 +162,9 @@
               DISPLAY fe_datetime
        end-if
        
+       PERFORM AFFI_PART_athl
+       
        STOP RUN.
+       
+       COPY "participation.cpy".
        

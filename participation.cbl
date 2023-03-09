@@ -1,10 +1,10 @@
-       AFFI_PARTICIPATIONS_athlete.
+       AFFI_PART_athl.
        OPEN INPUT fparticipations
        OPEN INPUT fepreuves
        MOVE current_athlete TO fp_numA
        MOVE 0 TO Wfin
        START fparticipations, KEY IS = fp_numA
-              INVALID KEY DISPLAY "Erreur sur la clé (Participations)"
+              INVALID KEY DISPLAY "Erreur sur la cle (Participations)"
               NOT INVALID KEY
               PERFORM WITH TEST AFTER UNTIL Wfin=1
                      READ fparticipations NEXT
@@ -14,10 +14,10 @@
                             READ fepreuves
                                    INVALID KEY
                                           DISPLAY
-                                          "Erreur sur la clé (Épreuves)"
+                                          "Erreur sur la cle (Epreuves)"
                                    NOT INVALID KEY
                                           DISPLAY
-                                          "Numéro de l'épreuve : "
+                                          "Numéro de l epreuve : "
                                           fe_numE
                                           DISPLAY
                                           "Type : "
@@ -52,7 +52,7 @@
        MOVE WIdE TO fp_numE
        MOVE 0 TO Wfin
        START fparticipations, KEY IS = fp_numE
-              INVALID KEY DISPLAY "Erreur sur la clé (Épreuves)"
+              INVALID KEY DISPLAY "Erreur sur la cle (Epreuves)"
               NOT INVALID KEY
               PERFORM WITH TEST AFTER UNTIL Wfin=1
                      READ fparticipations NEXT
@@ -62,19 +62,19 @@
                             READ fathletes
                                    INVALID KEY
                                           DISPLAY
-                                          "Erreur sur la clé (Athlètes)"
+                                          "Erreur sur la cle (Athletes)"
                                    NOT INVALID KEY
                                           DISPLAY
-                                          "Numéro de l'athlète : "
+                                          "Numéro de l athlete : "
                                           fa_numA
                                           DISPLAY
                                           "Nom : "
                                           fa_nom
                                           DISPLAY
-                                          "Prénom : "
+                                          "Prenom : "
                                           fa_prenom
                                           DISPLAY
-                                          "Âge : "
+                                          "Age : "
                                           fa_age " ans"
                                           DISPLAY
                                           "Pays : "
@@ -96,20 +96,20 @@
        MOVE 0 TO Wfin
        PERFORM WITH TEST AFTER UNTIL Wfin=1
               DISPLAY "----------------------------------"
-              DISPLAY "Veuillez saisir l'ID de l'athlète"
+              DISPLAY "Veuillez saisir l ID de l athlete"
               ACCEPT fp_numA
-              DISPLAY "Veuillez saisir l'ID de l'épreuve"
+              DISPLAY "Veuillez saisir l ID de l epreuve"
               ACCEPT fp_numE
               DISPLAY "Veuillez saisir le classement"
               ACCEPT fp_classement
-              DISPLAY "Veuillez saisir le temps réalisé"
+              DISPLAY "Veuillez saisir le temps realise"
               ACCEPT fc_temps
-              WRITE tamp_fparticipation RECORD
+              WRITE tamp_fparticipation
                      INVALID KEY
-                            DISPLAY "Cette participation existe déjà"
+                            DISPLAY "Cette participation existe deja"
                      NOT INVALID KEY
                             MOVE 1 TO Wfin
-                            DISPLAY "Participation ajoutée"
+                            DISPLAY "Participation ajoutee"
               END-WRITE
        END-PERFORM
        CLOSE fparticipations
@@ -123,8 +123,8 @@
        ACCEPT fe_numE
        
        DELETE fparticipations RECORD
-              INVALID KEY DISPLAY "La participation n'existe pas"
-              NOT INVALID KEY DISPLAY "Participation supprimée"
+              INVALID KEY DISPLAY "La participation n existe pas"
+              NOT INVALID KEY DISPLAY "Participation supprimee"
        END-DELETE
        
        CLOSE fparticipations.
