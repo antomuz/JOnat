@@ -129,3 +129,39 @@
        
        CLOSE fparticipations.
        
+       
+       AFFICHE_SCORE.
+       OPEN INPUT fparticipations
+       OPEN INPUT fathletes
+       DISPLAY "Veuillez choisir une epreuve (indiquer le numero)"
+       PERFORM EPREUVES_FUTURES 
+       END-PERFORM
+       ACCEPT fe_numE
+       MOVE 0 TO Wfin
+       START fparticipations, KEY IS = fp_numE
+              INVALID KEY DISPLAY "Erreur sur la clé (Épreuves)"
+              NOT INVALID KEY
+              PERFORM WITH TEST AFTER UNTIL Wfin=1
+                     READ fparticipations NEXT
+                     AT END MOVE 1 TO Wfin
+                     NOT AT END
+                            
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       

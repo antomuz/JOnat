@@ -88,8 +88,8 @@
               READ fepreuves
               AT END        MOVE 1 TO Wfin
               NOT AT END    IF WS-TEMP-DATE-TIME > fe_datetime then 
-                                    DISPLAY "- " fe_distance " " 
-                                    fe_type " " fe_genre
+                                    DISPLAY fe_numE " - " fe_distance 
+                                    " " fe_type " " fe_genre
               END-READ
        END-PERFORM
        CLOSE fepreuves.
