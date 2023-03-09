@@ -1,0 +1,4 @@
+       AFFICH_MENU.
+       
+       DISPLAY "
+       
