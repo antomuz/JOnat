@@ -80,8 +80,15 @@
        77 cr_fath PIC 9(2).
        77 cr_farch PIC 9(2).
        77 cr_fparti PIC 9(2).
+       77 WIdE PIC 9(2)
        77 Wfin PIC 9.
+       77 Wchoix2 PIC 9.
        77 Wtrouve PIC 9.
+       77 WIdUser PIC 9.
+       77 WidUtilisateurConnecte PIC 9(10).
+       77 WLogin PIC X(20).
+       77 Wmdp  PIC X(20).
+       77 repUser PIC 9.
        77 current_atlhete PIC 9(2).
        01 WS-TEMP-DT.   
               05 WS-TEMP-DATE-TIME.            
