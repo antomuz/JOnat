@@ -80,8 +80,8 @@
        77 cr_fath PIC 9(2).
        77 cr_farch PIC 9(2).
        77 cr_fparti PIC 9(2).
-       77 WIdE PIC 9(2)
-       77 Wfin PIC 9.
+       77 WIdE PIC 9(2).
+       77 Wfin PIC 9(1).
        77 Wchoix2 PIC 9.
        77 Wtrouve PIC 9.
        77 WIdUser PIC 9.
@@ -89,7 +89,8 @@
        77 WLogin PIC X(20).
        77 Wmdp  PIC X(20).
        77 repUser PIC 9.
-       77 current_atlhete PIC 9(2).
+       77 current_athlete PIC 9(2).
+       77 nb_medaille PIC 9(3).
        01 WS-TEMP-DT.   
               05 WS-TEMP-DATE-TIME.            
                      10 WS-TEMP-DATE.              
@@ -144,23 +145,12 @@
        MOVE WS-TEMP-HOUR  TO WS-FORMATTED-HOUR
        MOVE WS-TEMP-MIN   TO WS-FORMATTED-MIN
        
+       MOVE 0 TO current_athlete
        
        
-       MOVE 2023 TO fe_YEAR
-       MOVE 01 TO fe_MONTH
-       MOVE 02 TO fe_DAY
-       MOVE 12 TO fe_HOUR
-       MOVE 35 TO fe_MIN
-
-       DISPLAY fe_datetime
-       DISPLAY WS-TEMP-DATE-TIME
-       DISPLAY WS-FORMATTED-DATE-TIME
-       
-       if WS-TEMP-DATE-TIME > fe_datetime
-              DISPLAY WS-TEMP-DATE-TIME
-       else
-              DISPLAY fe_datetime
-       end-if
        
        STOP RUN.
+       COPY "participation.cbl".
+       COPY "athlete.cbl".
+       COPY "epreuve.cbl".
        
