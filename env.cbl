@@ -149,8 +149,12 @@
        
        
        
+       PERFORM AFFI_PART_athl
+       
        STOP RUN.
        COPY "participation.cbl".
        COPY "athlete.cbl".
        COPY "epreuve.cbl".
+       
+       COPY "participation.cpy".
        
