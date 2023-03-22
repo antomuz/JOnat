@@ -84,4 +84,34 @@
        
        CLOSE fepreuves.
        
+       EPREUVES_FUTURES.
+       OPEN INPUT fepreuves
+       MOVE 0 TO Wfin
+       MOVE FUNCTION CURRENT-DATE TO WS-TEMP-DATE-TIME
+
+       PERFORM WITH TEST AFTER UNTIL Wfin=1
+              READ fepreuves
+              AT END        MOVE 1 TO Wfin
+              NOT AT END    IF WS-TEMP-DATE-TIME > fe_datetime then 
+                                    DISPLAY fe_numE " - " fe_distance 
+                                    " " fe_type " " fe_genre
+              END-READ
+       END-PERFORM
+       CLOSE fepreuves.
+       
+       EPREUVES_PASSEE.
+       OPEN INPUT fepreuves
+       MOVE 0 TO Wfin
+       MOVE FUNCTION CURRENT-DATE TO WS-TEMP-DATE-TIME
+
+       PERFORM WITH TEST AFTER UNTIL Wfin=1
+              READ fepreuves
+              AT END        MOVE 1 TO Wfin
+              NOT AT END    IF WS-TEMP-DATE-TIME < fe_datetime then 
+                                    DISPLAY fe_numE " - " fe_distance 
+                                    " " fe_type " " fe_genre
+              END-READ
+       END-PERFORM
+       CLOSE fepreuves.
+       
        
