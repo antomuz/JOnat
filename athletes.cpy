@@ -1,9 +1,25 @@
+       AFFI_INFOS_ATHLETE.
+       OPEN INPUT fathletes
+       MOVE current_athlete TO fa_numA
+       READ fathletes
+              INVALID KEY DISPLAY "Erreur sur la clé (Athletes)"
+              NOT INVALID KEY
+                     DISPLAY "Numero de l'athlete : " fa_numA
+                     DISPLAY "Nom : " fa_nom
+                     DISPLAY "Prenom : " fa_prenom
+                     DISPLAY "Age: " fa_age " ans"
+                     DISPLAY "Pays : " fa_pays
+                     DISPLAY "Genre : " fa_genre
+                     DISPLAY " "
+       END-READ
+       CLOSE fathletes.
+
+
        ADD_ATHLETE.
       *Methode qui permet d'ajouter un athlete
        DISPLAY "---------------------------------------"
        DISPLAY "            AJOUT ATHLETES "
        DISPLAY "---------------------------------------"
-
 
        MOVE 1 TO repUser
        MOVE 0 TO Wfin
@@ -64,9 +80,9 @@
                      WRITE tamp_fathletes
 
                      INVALID KEY DISPLAY "erreur dans l'ajout "
-                     NOT INVALID KEY DISPLAY "Ajout effectue"
+                     NOT INVALID KEY DISPLAY "Ajout effectue "
                      END-WRITE
-              NOT INVALID KEY DISPLAY "cet id est déja utilise"
+              NOT INVALID KEY DISPLAY "cet id est deja utilise"
               END-READ
 
 
@@ -167,26 +183,6 @@
        CLOSE fepreuves.
 
 
-       DEL_ATHLETE.
-      *Methode qui permet de supprimer un Athlete
-       OPEN I-O fathletes
-       DISPLAY "---------------------------------------"
-       DISPLAY "            SUPPRESION ATHLETE         "
-       DISPLAY "---------------------------------------"
-
-       PERFORM LIST_ATHLETES
-
-       PERFORM WITH TEST AFTER UNTIL repUser>0
-           DISPLAY"Quel est l'id de l'athlete "
-           DISPLAY"que vous souhaitez supprimer?"
-           ACCEPT repUser
-
-       END-PERFORM
-
-       CLOSE fathletes.
-
-
-
        DEL_ATH.
        OPEN I-O fathletes
        DISPLAY "---------------------------------------"
@@ -205,8 +201,8 @@
                END-PERFORM
 
                DELETE fathletes RECORD
-                      INVALID KEY DISPLAY "Aucun Athlete aved cet ID"
-                      NOT INVALID KEY DISPLAY "Athlete supprime"
+                       INVALID KEY DISPLAY 'epreuve existe pas'
+                       NOT INVALID KEY DISPLAY 'epreuve supprimee'
                END-DELETE
 
                PERFORM WITH TEST AFTER UNTIL repUser>=0
@@ -222,3 +218,22 @@
        END-PERFORM
 
        CLOSE fathletes.
+
+       DELE_ATH.
+       OPEN I-O fathletes
+       DISPLAY"Quel est l'id de l'athlete "
+       PERFORM WITH TEST AFTER UNTIL fa_numA>0
+               DISPLAY"que vous souhaitez supprimer?"
+               ACCEPT fa_numA
+       END-PERFORM
+
+       DELETE fathletes RECORD
+               INVALID KEY DISPLAY 'epreuve existe pas'
+               NOT INVALID KEY DISPLAY 'epreuve supprimee'
+       END-DELETE
+
+       CLOSE fathletes.
+
+
+       test_ep.
+       DISPLAY "test"

@@ -66,18 +66,12 @@
                      02 fp_classement PIC 9(2).
                      02 fc_temps PIC 9(5).
        FD farch.
-              01 tamp_farch.                     
+              01 tamp_farch.
                      02 fa_annee PIC 9(4).
-                     02 fa_type PIC A(20).
-                     02 fa_disatnce PIC 9(4).
-                     02 fa_genre_ath PIC A(1).
-                     02 fa_prenom_or PIC A(20).
                      02 fa_nom_or PIC A(20).
                      02 fa_temps_or PIC 9(5).
-                     02 fa_prenom_argent PIC A(20).
                      02 fa_nom_argent PIC A(20).
                      02 fa_temps_argent PIC 9(5).
-                     02 fa_prenom_bronze PIC A(20).
                      02 fa_nom_bronze PIC A(20).
                      02 fa_temps_bronze PIC 9(5).
 
@@ -87,9 +81,7 @@
        77 cr_farch PIC 9(2).
        77 cr_fparti PIC 9(2).
        77 WIdE PIC 9(2).
-       77 Wfin PIC 9(1).       
-       77 Wfin2 PIC 9(1).
-       77 Wchoix PIC 9.
+       77 Wfin PIC 9(1).
        77 Wchoix2 PIC 9.
        77 Wtrouve PIC 9.
        77 WIdUser PIC 9.
@@ -98,6 +90,10 @@
        77 Wmdp  PIC X(20).
        77 repUser PIC 9.
        77 current_athlete PIC 9(2).
+       77 choixPays PIC A(50).
+       77 choixType PIC 9(1).
+       77 chaineType PIC A(8).
+       77 choixDistance PIC 9(3).
        77 nb_medaille PIC 9(3).
        01 WS-TEMP-DT.
               05 WS-TEMP-DATE-TIME.
@@ -120,6 +116,7 @@
                      15 WS-FORMATTED-HOUR  PIC  9(2).
                      15 FILLER             PIC X VALUE 'h'.
                      15 WS-FORMATTED-MIN   PIC  9(2).
+
        PROCEDURE DIVISION.
 
        OPEN I-O fathletes
@@ -155,11 +152,11 @@
 
        MOVE 0 TO current_athlete
 
-       PERFORM AFFICH_MENU
+
+
 
 
        STOP RUN.
-       COPY "menu.cpy".
-       COPY "connexion.cpy".
-       COPY "athlete.cbl".
-       COPY "epreuve.cbl".
+       COPY "participation.cpy".
+       COPY "athletes.cpy".
+       COPY "participation.cpy".
