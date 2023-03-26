@@ -66,12 +66,18 @@
                      02 fp_classement PIC 9(2).
                      02 fc_temps PIC 9(5).
        FD farch.
-              01 tamp_farch.
+              01 tamp_farch.                     
                      02 fa_annee PIC 9(4).
+                     02 fa_type PIC A(20).
+                     02 fa_disatnce PIC 9(4).
+                     02 fa_genre_ath PIC A(1).
+                     02 fa_prenom_or PIC A(20).
                      02 fa_nom_or PIC A(20).
                      02 fa_temps_or PIC 9(5).
+                     02 fa_prenom_argent PIC A(20).
                      02 fa_nom_argent PIC A(20).
                      02 fa_temps_argent PIC 9(5).
+                     02 fa_prenom_bronze PIC A(20).
                      02 fa_nom_bronze PIC A(20).
                      02 fa_temps_bronze PIC 9(5).
 
