@@ -68,6 +68,9 @@
        FD farch.
               01 tamp_farch.
                      02 fa_annee PIC 9(4).
+                     02 fa_type PIC A(20).
+                     02 fa_disatnce PIC 9(4).
+                     02 fa_genre PIC A(1).
                      02 fa_nom_or PIC A(20).
                      02 fa_temps_or PIC 9(5).
                      02 fa_nom_argent PIC A(20).
