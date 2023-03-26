@@ -233,7 +233,3 @@
        END-DELETE
 
        CLOSE fathletes.
-
-
-       test_ep.
-       DISPLAY "test"

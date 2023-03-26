@@ -1,5 +1,3 @@
-
-
        DEL_EPREUVE.
        OPEN I-O fepreuves
        ACCEPT fe_numE
