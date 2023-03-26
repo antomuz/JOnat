@@ -1,7 +1,7 @@
        AFFI_PART_athl.
        OPEN INPUT fparticipations
        OPEN INPUT fepreuves
-       MOVE current_athlete TO fp_numA
+       MOVE WIdUser TO fp_numA
        MOVE 0 TO Wfin
        START fparticipations, KEY IS = fp_numA
               INVALID KEY DISPLAY "Erreur sur la cle (Participations)"
@@ -49,7 +49,8 @@
        AFFI_PARTICIPATIONS_epreuve.
        OPEN INPUT fparticipations
        OPEN INPUT fathletes
-       MOVE WIdE TO fp_numE
+       DISPLAY "Saisir numero epreuve"
+       ACCEPT fp_numE
        MOVE 0 TO Wfin
        START fparticipations, KEY IS = fp_numE
               INVALID KEY DISPLAY "Erreur sur la cle (Epreuves)"
@@ -107,36 +108,6 @@
 
        CLOSE fparticipations.
 
-       AFFICHE_SCORE.
-       OPEN INPUT fathletes
-       DISPLAY "Veuillez choisir une epreuve (indiquer le numero)"
-       PERFORM EPREUVES_FUTURES
-
-       ACCEPT fe_numE
-       MOVE 0 TO Wfin
-       START fparticipations, KEY IS = fp_numE
-              INVALID KEY DISPLAY "Erreur sur la clé (Épreuves)"
-              NOT INVALID KEY
-              PERFORM WITH TEST AFTER UNTIL Wfin=1
-                     READ fparticipations NEXT
-                     AT END MOVE 1 TO Wfin
-                     NOT AT END
-                            MOVE fp_numE TO fe_numE
-                            READ fepreuves
-                                   INVALID KEY
-                                          DISPLAY
-                                          "Erreur sur la cle (Athletes)"
-                                   NOT INVALID KEY
-                                          DISPLAY fp_classement " - "
-                                          fa_nom " - "
-                                          fa_prenom " : temps : "
-                                          fc_temps
-                            END-READ
-                     END-READ
-              END-PERFORM
-       END-START
-       CLOSE fathletes
-       CLOSE fparticipations.
 
 
 
@@ -189,13 +160,32 @@
        Close fparticipations.
 
 
-
-
+       UPDATE_EPREUVE.
+       OPEN I-O fparticipations
+       DISPLAY "Saisir numero Athlete"
+       ACCEPT fp_numA
+       DISPLAY "Saisir numero Epreuve"
+       ACCEPT fp_numE
+       READ fparticipations
+                            INVALID KEY DISPLAY "inexistant"
+                            NOT INVALID KEY
+                                  DISPLAY "Saisir son classement"
+                                  Accept fp_classement
+                                  DISPLAY "Saisir son temps"
+                                  accept fc_temps
+                                  WRITE tamp_fparticipation
+                                  END-WRITE
+                                  DISPLAY cr_fparti
+                                  IF cr_fparti = 00 THEN
+                                     DISPLAY  "epreuve bien enregistre"
+                                  END-IF
+       END-READ
+       CLOSE fparticipations.
 
        VISU_MEDAILLES.
        OPEN INPUT fparticipations
        MOVE 0 TO nb_medaille
-       MOVE current_athlete TO fp_numA
+       MOVE WidUser TO fp_numA
        START fparticipations, KEY IS = fp_numA
               INVALID KEY DISPLAY "Erreur sur la cle (Athlete)"
               NOT INVALID KEY

@@ -1,5 +1,3 @@
-
-
        DEL_EPREUVE.
        OPEN I-O fepreuves
        ACCEPT fe_numE
@@ -11,6 +9,35 @@
 
        CLOSE fepreuves.
 
+       AFFICHE_SCORE_EPREUVE.
+       open input fepreuves
+       display "indiquer le numero de lepreuve a afficher"
+       perform EPREUVES_PASSEE
+
+       accept Wchoix
+       MOVE 0 tO Wfin
+
+       MOVE Wchoix TO fp_numE
+       START fparticipations, KEY IS = fp_numE
+       INVALID KEY display "erreur sur lepreuve"
+       NOT INVALID KEY
+           PERFORM WITH TEST AFTER UNTIL Wfin = 1
+               READ fparticipations NEXT
+               AT END MOVE 1 TO Wfin
+               NOT AT END
+                   MOVE    fp_numA TO fa_numA
+                   READ    fathletes
+                   INVALID KEY display "erreur sur lathlete"
+                   NOT INVALID KEY
+                       display "classement - " fp_classement
+                       display "nom - " fa_nom
+                       display "prenom - " fa_prenom
+                       display "temps - " fc_temps
+                   END-READ
+               end-read
+           end-perform
+       end-start
+       close fepreuves.
 
        ADD_EPREUVE.
        OPEN INPUT fepreuves
@@ -100,8 +127,7 @@
        LIST_EPREUVE.
        OPEN INPUT fepreuves
        MOVE 0 TO Wfin
-       MOVE 0 TO Wtrouve
-       PERFORM WITH TEST AFTER UNTIL Wfin=1 OR Wtrouve=1
+       PERFORM WITH TEST AFTER UNTIL Wfin=1
               READ fepreuves
               AT END        MOVE 1 TO Wfin
               NOT AT END    DISPLAY "----------------------------------"

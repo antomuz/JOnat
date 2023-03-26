@@ -66,4 +66,7 @@
            END-START
 
        END-READ
-       END-PERFORM.
+       END-PERFORM
+       CLOSE fparticipations
+       CLOSE fathletes
+       CLOSE fepreuves.
