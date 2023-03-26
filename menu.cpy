@@ -1,5 +1,6 @@
        AFFICH_MENU.
        MOVE 1 TO Wchoix
+       MOVE 0 TO Wchoix2
        MOVE 0 TO WidUtilisateurConnecte
        PERFORM WITH TEST AFTER UNTIL Wchoix = 0
         IF WidUtilisateurConnecte = 0 THEN
@@ -22,29 +23,34 @@
           DISPLAY "*                                             *"
          END-PERFORM
          DISPLAY "***********************************************"
-
+         DISPLAY "2"
          IF Wchoix = 1 THEN
+           DISPLAY "connexion spectateur"
            MOVE 1 TO WidUtilisateurConnecte
          ELSE IF Wchoix = 2 THEN
-             DISPLAY "connexion admin"
-      *      PERFORM CONNEXION_ATHL
+           DISPLAY "connexion athlete"
+           PERFORM CONNEXION_ATHL
          ELSE IF Wchoix = 3 THEN
-             DISPLAY "connexion admin"
-      *      PERFORM CONNEXION_ADMIN
+           DISPLAY "connexion admin"
+           PERFORM CONNEXION_ADMIN
          ELSE IF Wchoix = 4 THEN
-            MOVE 0 TO Wchoix
+           MOVE 0 TO Wchoix
          END-IF
-
+         DISPLAY "cc"
+        DISPLAY "3"
+        END-IF
+        DISPLAY "4"
         ELSE
-         PERFORM WITH TEST AFTER UNTIL Wchoix = 0
-          IF WIdUser = 1 THEN
+         DISPLAY "5"
+         PERFORM WITH TEST AFTER UNTIL Wchoix2 = 0
+          IF WidUtilisateurConnecte = 1 THEN
       *    Affichage en tant que spectateur
            DISPLAY "*Bienvenue cher spectateur !                  *"
            DISPLAY "*Que souhaitez-vous faire ?                   *"
            DISPLAY "*                                             *"
-           DISPLAY "* 1 - Visualiser les épreuves �  venir         *"
+           DISPLAY "* 1 - Visualiser les epreuves a venir         *"
            DISPLAY "* 2 - Visualiser les scores                   *"
-           DISPLAY "* 3 - Visualiser classement général des pays  *"
+           DISPLAY "* 3 - Visualiser classement general des pays  *"
            DISPLAY "* 4 - Visualiser les statistiques             *"
            DISPLAY "* 5 - Retour                                  *"
            DISPLAY "*                                             *"
@@ -68,7 +74,9 @@
       *      PERFORM AFFI_STATS
            ELSE IF Wchoix2 = 5 THEN
             MOVE 0 TO Wchoix2
-
+            MOVE 0 TO WidUtilisateurConnecte
+           END-IF
+          END-IF
          ELSE IF WidUtilisateurConnecte = 2 THEN
       *     Affichage en tant qu'athlete
            DISPLAY "*A quel menu souhaitez vous accedez ?         *"
@@ -92,8 +100,9 @@
       *      PERFORM MESVICTOIRES
            ELSE IF Wchoix2 = 4 THEN
             MOVE 0 TO Wchoix2
-
-
+            MOVE 0 TO WidUtilisateurConnecte
+           END-IF
+         END-IF
          ELSE IF WidUtilisateurConnecte = 3 THEN
       *    Affichage en tant qu'admin
            DISPLAY "*A quel menu souhaitez vous accedez ?         *"
@@ -117,8 +126,10 @@
       *      PERFORM GESTION_PARTICIPATION
            ELSE IF Wchoix2 = 4 THEN
             MOVE 0 TO Wchoix2
+            MOVE 0 TO WidUtilisateurConnecte
            END-IF
           END-IF
          END-IF
         END-PERFORM
+        DISPLAY "fin boucle"
        END-PERFORM.
