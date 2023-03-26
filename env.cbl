@@ -81,7 +81,9 @@
        77 cr_farch PIC 9(2).
        77 cr_fparti PIC 9(2).
        77 WIdE PIC 9(2).
-       77 Wfin PIC 9(1).
+       77 Wfin PIC 9(1).    
+       77 Wfin2 PIC 9(1).
+       77 Wchoix PIC 9.
        77 Wchoix2 PIC 9.
        77 Wtrouve PIC 9.
        77 WIdUser PIC 9.
