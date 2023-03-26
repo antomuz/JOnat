@@ -1,4 +1,6 @@
+
        CLASSEMENT_PAYS.
+
        Open input fparticipations
        open input fathletes
        MOVE 0 TO Wfin

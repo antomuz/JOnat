@@ -165,7 +165,6 @@
 
 
 
-
        STOP RUN.
 
        COPY "menu.cpy".
