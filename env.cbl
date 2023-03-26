@@ -70,7 +70,7 @@
                      02 fa_annee PIC 9(4).
                      02 fa_type PIC A(20).
                      02 fa_disatnce PIC 9(4).
-                     02 fa_genre PIC A(1).
+                     02 fa_genre_ath PIC A(1).
                      02 fa_prenom_or PIC A(20).
                      02 fa_nom_or PIC A(20).
                      02 fa_temps_or PIC 9(5).
@@ -88,6 +88,7 @@
        77 cr_fparti PIC 9(2).
        77 WIdE PIC 9(2).
        77 Wfin PIC 9(1).
+       77 Wfin2 PIC 9(1).
        77 Wchoix2 PIC 9.
        77 Wtrouve PIC 9.
        77 WIdUser PIC 9.
