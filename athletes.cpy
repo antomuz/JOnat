@@ -1,6 +1,6 @@
        AFFI_INFOS_ATHLETE.
        OPEN INPUT fathletes
-       MOVE current_athlete TO fa_numA
+       MOVE WIdUser TO fa_numA
        READ fathletes
               INVALID KEY DISPLAY "Erreur sur la clé (Athletes)"
               NOT INVALID KEY

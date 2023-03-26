@@ -23,7 +23,6 @@
           DISPLAY "*                                             *"
          END-PERFORM
          DISPLAY "***********************************************"
-         DISPLAY "2"
          IF Wchoix = 1 THEN
            DISPLAY "connexion spectateur"
            MOVE 1 TO WidUtilisateurConnecte
@@ -36,12 +35,8 @@
          ELSE IF Wchoix = 4 THEN
            MOVE 0 TO Wchoix
          END-IF
-         DISPLAY "cc"
-        DISPLAY "3"
         END-IF
-        DISPLAY "4"
         ELSE
-         DISPLAY "5"
          PERFORM WITH TEST AFTER UNTIL Wchoix2 = 0
           IF WidUtilisateurConnecte = 1 THEN
       *    Affichage en tant que spectateur
@@ -62,16 +57,16 @@
            DISPLAY "***********************************************"
            IF Wchoix2 = 1 THEN
              DISPLAY "affi epreuve"
-      *      PERFORM AFFI_EPREUVE
+            PERFORM EPREUVES_FUTURES
            ELSE IF Wchoix2 = 2 THEN
              DISPLAY "affi score"
-      *      PERFORM AFFI_SCORE
+            PERFORM AFFICHE_SCORE_EPREUVE
            ELSE IF Wchoix2 = 3 THEN
              DISPLAY "affi classement"
-      *      PERFORM AFFI_CLASSEMENT
+            PERFORM CLASSEMENT_PAYS
            ELSE IF Wchoix2 = 4 THEN
              DISPLAY "affi stats"
-      *      PERFORM AFFI_STATS
+      *      PERFORM maisSiLa
            ELSE IF Wchoix2 = 5 THEN
             MOVE 0 TO Wchoix2
             MOVE 0 TO WidUtilisateurConnecte
@@ -82,7 +77,7 @@
            DISPLAY "*A quel menu souhaitez vous accedez ?         *"
            DISPLAY "*                                             *"
            DISPLAY "* 1 - Mes informations                        *"
-           DISPLAY "* 2 - Mes épreuves a venir                    *"
+           DISPLAY "* 2 - Mes epreuves a venir                    *"
            DISPLAY "* 3 - Mes victoires                           *"
            DISPLAY "* 4 - Deconnexion                             *"
            DISPLAY "*                                             *"
@@ -93,13 +88,14 @@
            DISPLAY "*                                             *"
            DISPLAY "***********************************************"
            IF Wchoix2 = 1 THEN
-      *      PERFORM MENU_INFO
+            PERFORM AFFI_INFOS_ATHLETE
            ELSE IF Wchoix2 = 2 THEN
-      *      PERFORM EPRE_FUTUR
+            PERFORM LISTE_EPREUVE_ATHLETE
            ELSE IF Wchoix2 = 3 THEN
-      *      PERFORM MESVICTOIRES
+            PERFORM VISU_MEDAILLES
            ELSE IF Wchoix2 = 4 THEN
             MOVE 0 TO Wchoix2
+            MOVE 0 TO WidUser
             MOVE 0 TO WidUtilisateurConnecte
            END-IF
          END-IF
@@ -107,29 +103,31 @@
       *    Affichage en tant qu'admin
            DISPLAY "*A quel menu souhaitez vous accedez ?         *"
            DISPLAY "*                                             *"
-           DISPLAY "* 1 - Gérer les athlètes                      *"
-           DISPLAY "* 2 - Gérer les épreuves                      *"
-           DISPLAY "* 3 - Gérer les participations                *"
-           DISPLAY "* 4 - Deconnexion                             *"
+           DISPLAY "* 1 - Gerer les athletes                      *"
+           DISPLAY "* 2 - Gerer les epreuves                      *"
+           DISPLAY "* 3 - Gerer les participations                *"
+           DISPLAY "* 4 - Archiver les donnees                    *"
+           DISPLAY "* 5 - Deconnexion                             *"
            DISPLAY "*                                             *"
-           PERFORM WITH TEST AFTER UNTIL Wchoix2 < 5 AND Wchoix2 > 0
+           PERFORM WITH TEST AFTER UNTIL Wchoix2 < 6 AND Wchoix2 > 0
             DISPLAY "* Saisir le nombre :                          *"
              ACCEPT Wchoix2
            END-PERFORM
            DISPLAY "*                                             *"
            DISPLAY "***********************************************"
            IF Wchoix2 = 1 THEN
-      *      PERFORM GESTION_ATHLETE
+            PERFORM GESTION_ATHLETES
            ELSE IF Wchoix2 = 2 THEN
-      *      PERFORM GESTION_EPREUVE
+            PERFORM GESTION_EPREUVES
            ELSE IF Wchoix2 = 3 THEN
-      *      PERFORM GESTION_PARTICIPATION
+            PERFORM GESTION_PARTICIPATIONS
            ELSE IF Wchoix2 = 4 THEN
+            PERFORM ARCHIVAGE
+           ELSE IF Wchoix2 = 5 THEN
             MOVE 0 TO Wchoix2
             MOVE 0 TO WidUtilisateurConnecte
            END-IF
           END-IF
          END-IF
         END-PERFORM
-        DISPLAY "fin boucle"
        END-PERFORM.

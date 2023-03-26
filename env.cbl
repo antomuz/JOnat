@@ -101,7 +101,6 @@
        77 WLogin PIC X(20).
        77 Wmdp  PIC X(20).
        77 repUser PIC 9.
-       77 current_athlete PIC 9(2).
        77 choixPays PIC A(50).
        77 choixType PIC 9(1).
        77 chaineType PIC A(8).
@@ -162,8 +161,7 @@
        MOVE WS-TEMP-HOUR  TO WS-FORMATTED-HOUR
        MOVE WS-TEMP-MIN   TO WS-FORMATTED-MIN
 
-       MOVE 0 TO current_athlete
-
+       MOVE 0 TO WIdUser
 
 
 
@@ -172,10 +170,9 @@
        COPY "menu.cpy".
        COPY "participation.cpy".
        COPY "athletes.cpy".
-       COPY "participation.cpy".
        COPY "archvive.cpy".
        COPY "classement.cpy".
        COPY "connexion.cpy".
        COPY "epreuve.cpy".
-       COPY "menu.cpy".
        COPY "modifMdp.cpy".
+       COPY "admin.cpy".
