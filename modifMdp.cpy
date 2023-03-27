@@ -7,15 +7,17 @@
        IF Wchoix = 1
               MOVE WidUser TO fa_numA
               READ fathletes
-                     INVALID KEY DISPLAY "L'id n'existe pas"
+                     INVALID KEY "L'id n'existe pas" 
                      NOT INVALID KEY DISPLAY "Saisir nouveau mdp"
                                      ACCEPT fa_mdp
                                      WRITE tamp_fepreuve
                                      END-WRITE
                                      DISPLAY cr_fep
-                                         IF cr_fep = 00 THEN
+                                         IF cr_fep = 00 THEN 
                                       DISPLAY  "mdp bien enregistré"
                                      END-IF
                      END-READ
-       CLOSE fathletes
-       END-IF.
+       END-IF
+       
+       
+       

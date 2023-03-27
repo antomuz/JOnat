@@ -6,7 +6,9 @@
         DISPLAY "Saisir le mdp"
         ACCEPT Wmdp
         IF Wlogin = "admin" AND Wmdp = "root"
-     *  MOVE 3 to WidUtilisateurConnecte
+     *        MOVE 3 to WidUtilisateurConnecte
+              MOVE 1 to Wfin
+              DISPLAY "Admin connecté"
         END-IF
        END-PERFORM
        .
@@ -26,5 +28,6 @@
                                  MOVE 0 to WidUser
                      NOT INVALID KEY
                            MOVE 2 to WidUtilisateurConnecte
+                           MOVE 1 to Wfin
        END-PERFORM
        .
