@@ -98,7 +98,7 @@
        77 Wtrouve PIC 9.
        77 WIdUser PIC 9.
        77 WidUtilisateurConnecte PIC 9(10).
-       77 WLogin PIC X(20).
+       77 WLogin PIC X(5).
        77 Wmdp  PIC X(20).
        77 repUser PIC 9.
        77 choixPays PIC A(50).
@@ -164,6 +164,7 @@
        MOVE 0 TO WIdUser
 
 
+       PERFORM AFFICH_MENU
 
        STOP RUN.
 
