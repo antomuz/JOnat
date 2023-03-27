@@ -1,10 +1,12 @@
-       maisSiLa.
-       OPEN I-O fepreuves
-       OPEN I-O fathletes
-       OPEN I-O fparticipations
+       distanciel.
+       OPEN INPUT fepreuves
+       OPEN INPUT fathletes
+       OPEN INPUT fparticipations
 
        MOVE 1 TO Wfin
-       DISPLAY "Pour quel pays souhaitez-vous afficher les medailes"
+       MOVE 1 TO Wfin2
+
+       DISPLAY "Pour quel pays souhaitez-vous afficher les medailles"
        ACCEPT choixPays
 
        PERFORM WITH TEST AFTER UNTIL choixType>0 AND choixType<5
@@ -20,7 +22,6 @@
        PERFORM WITH TEST AFTER UNTIL choixDistance = 100 OR
        choixDistance = 200
          DISPLAY "Pour quelle distance (en metre)? (Entrez 100 ou 200)"
-
          ACCEPT choixDistance
        END-PERFORM
 
@@ -42,61 +43,61 @@
         DISPLAY " du pays " choixPays " : "
 
         MOVE chaineType TO fe_type
-        DISPLAY fe_type
+
 
         START fepreuves, KEY IS=fe_type
-        INVALID KEY DISPLAY "Aucun enregistrement pour ce type"
+        INVALID KEY DISPLAY "Aucune epreuve avec ce type"
         NOT INVALID KEY
-         DISPLAY"----------------Enreg fe_type existe"
-         IF cr_fep=35 THEN
-          DISPLAY"----------------cr_fep=OK"
+
+         PERFORM WITH TEST AFTER UNTIL Wfin =0
           READ fepreuves NEXT
-          AT END DISPLAY "AUCUN ENREGISTREMENT"
+          AT END Move 0 TO Wfin
           NOT AT END
 
-           PERFORM WITH TEST AFTER UNTIL Wfin=0
-            READ fepreuves NEXT
-            AT END MOVE 0 TO Wfin
-            NOT AT END
-             IF fe_distance = choixDistance THEN
-              DISPLAY"----------------choix-distance bon"
-              MOVE fe_numE TO fp_numE
-              READ fparticipations
-              INVALID KEY DISPLAY "Pas d'enregistrement"
-              NOT INVALID KEY
-               IF cr_fparti=35 THEN
-                DISPLAY"----------------Enreg fe_numE"
-                IF fp_classement=1 OR fp_classement=2 or fp_classement=3
-                THEN
-                DISPLAY"----------------classement trouve"
-                 MOVE fp_numA TO fa_numA
-                 READ fathletes
-                 INVALID KEY DISPLAY
-                 "Aucun enregistrement de cet athlete"
+               IF fe_type = chaineType THEN
+                IF fe_distance = choixDistance THEN
+                 MOVE fe_numE TO fp_numE
+                 MOVE 1 TO Wfin2
+                 START fparticipations, KEY IS= fp_numE
+                 INVALID KEY DISPLAY "Aucun Enregistrement"
                  NOT INVALID KEY
-                  IF cr_fath=35 THEN
-                  DISPLAY"----------------classement trouve"
-                   IF fa_pays=choixPays THEN
-                    DISPLAY"----------------Pays trouvee"
-                    DISPLAY "Athlete : " fa_nom " " fa_prenom
-                    DISPLAY "Classement : " fp_classement
-                   END-IF
-                  ELSE
-                   DISPLAY "Auncun enregistrement"
-                  END-IF
-                 END-READ
-                ELSE
-                 DISPLAY "Auncun enregistrement"
-                END-iF
+                  PERFORM WITH TEST AFTER UNTIL Wfin2 = 0
+
+                   READ fparticipations NEXT
+                   AT END MOVE 0 TO Wfin2
+                   NOT AT END
+
+                    IF fp_numE=fe_numE THEN
+
+                     IF fp_classement=1 OR fp_classement=2 OR
+                     fp_classement=3 THEN
+                      MOVE fp_numA TO fa_numA
+                      READ fathletes
+                      INVALID KEY DISPLAY "Aucun enregistrement"
+                      NOT INVALID KEY
+
+                       IF fa_pays= choixPays THEN
+                        DISPLAY "-----------------------------------"
+                        DISPLAY "Athlete : " fa_nom " " fa_prenom
+                        DISPLAY "classement : " fp_classement
+                       END-IF
+                      END-READ
+                     END-IF
+                    ELSE
+                      MOVE 0 TO Wfin2
+                    END-IF
+                   END-READ
+                  END-PERFORM
+                 END-START
+                END-IF
+               ELSE
+
+                MOVE 0 TO Wfin
                END-IF
-              END-READ
-             END-IF
-            END-READ
-           END-PERFORM
-
-
           END-READ
+         END-PERFORM
         END-START
+
 
        CLOSE fathletes
        CLOSE fparticipations
