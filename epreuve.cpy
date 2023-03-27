@@ -1,5 +1,7 @@
        DEL_EPREUVE.
+       PERFORM LIST_EPREUVE
        OPEN I-O fepreuves
+       DISPLAY "saisir id de l epreuve a supprime"
        ACCEPT fe_numE
 
        DELETE fepreuves RECORD
@@ -10,10 +12,12 @@
        CLOSE fepreuves.
 
        AFFICHE_SCORE_EPREUVE.
-       open input fepreuves
+
        display "indiquer le numero de lepreuve a afficher"
        perform EPREUVES_PASSEE
-
+       open input fepreuves
+       open input fparticipations
+       open input fathletes
        accept Wchoix
        MOVE 0 tO Wfin
 
@@ -37,6 +41,8 @@
                end-read
            end-perform
        end-start
+       CLOSE fathletes
+       CLOSE fparticipations
        close fepreuves.
 
        ADD_EPREUVE.
@@ -100,7 +106,7 @@
        PERFORM WITH TEST AFTER UNTIL Wfin=1
               READ fepreuves
               AT END        MOVE 1 TO Wfin
-              NOT AT END    IF WS-TEMP-DATE-TIME > fe_datetime then
+              NOT AT END    IF WS-TEMP-DATE-TIME < fe_datetime then
 
                                     DISPLAY fe_numE " - " fe_distance
                                     " " fe_type " " fe_genre " date : "
@@ -117,7 +123,7 @@
        PERFORM WITH TEST AFTER UNTIL Wfin=1
               READ fepreuves
               AT END        MOVE 1 TO Wfin
-              NOT AT END    IF WS-TEMP-DATE-TIME < fe_datetime then
+              NOT AT END    IF WS-TEMP-DATE-TIME > fe_datetime then
                                     DISPLAY fe_numE " - " fe_distance
                                     " " fe_type " " fe_genre
               END-READ

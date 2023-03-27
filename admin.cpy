@@ -56,7 +56,7 @@
        ELSE IF Wchoix2 = 2 THEN
               PERFORM ADD_ATHLETE
        ELSE IF Wchoix2 = 3 THEN
-              PERFORM DEL_ATH
+              PERFORM DELE_ATH
        ELSE IF Wchoix2 = 4 THEN
               MOVE -1 TO Wchoix2
        END-IF.

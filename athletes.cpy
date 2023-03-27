@@ -72,6 +72,8 @@
                             DISPLAY "ou h pour Homme) "
 
                             ACCEPT fa_genre
+                            DISPLAY "saisir mot de passe"
+                            ACCEPT fa_mdp
 
                      END-PERFORM
 
